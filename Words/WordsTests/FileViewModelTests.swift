@@ -36,7 +36,7 @@ class FileViewModelTests: XCTestCase {
         viewModel.input.loadFile.onNext(nil)
 
         waitForExpectations(timeout: 5, handler: nil)
-        XCTAssertTrue(error == "File name can not be empty")
+        XCTAssertTrue(error == "fileNameEmptyMsg".localized)
     }
 
     func testLoadFileWithWrongFileName() {
@@ -53,7 +53,7 @@ class FileViewModelTests: XCTestCase {
         viewModel.input.loadFile.onNext("WrongFileName")
 
         waitForExpectations(timeout: 5, handler: nil)
-        XCTAssertTrue(error == "Couldn't load file content. Please, check that the file name is correct")
+        XCTAssertTrue(error == "fileNotLoadedMsg".localized)
     }
 
     func testLoadFileWithRightFileName() {

@@ -24,6 +24,8 @@
 		B0D3157D260274A000311CF5 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D3157C260274A000311CF5 /* ViewModelProtocol.swift */; };
 		B0D3158926027AB200311CF5 /* FileLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D3158826027AB200311CF5 /* FileLoaderTests.swift */; };
 		B0D3159426027CD800311CF5 /* FileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D3159326027CD800311CF5 /* FileViewModelTests.swift */; };
+		B0D315A02602B71A00311CF5 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D3159F2602B71A00311CF5 /* StringExtension.swift */; };
+		B0D315A52602B73100311CF5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0D315A42602B73100311CF5 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		B0D3157C260274A000311CF5 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		B0D3158826027AB200311CF5 /* FileLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLoaderTests.swift; sourceTree = "<group>"; };
 		B0D3159326027CD800311CF5 /* FileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewModelTests.swift; sourceTree = "<group>"; };
+		B0D3159F2602B71A00311CF5 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		B0D315A42602B73100311CF5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,8 @@
 				B09691C5260249AE00E6609D /* AppDelegate.swift */,
 				B09691C7260249AE00E6609D /* SceneDelegate.swift */,
 				B09691CE260249B000E6609D /* Assets.xcassets */,
+				B0D315A42602B73100311CF5 /* Localizable.strings */,
+				B0D3159E2602B6E800311CF5 /* Extension */,
 				B0D3156A2602717E00311CF5 /* BUSINESS */,
 				B0D3154F26026E6C00311CF5 /* MVVM */,
 				B09691D3260249B000E6609D /* Info.plist */,
@@ -223,6 +229,14 @@
 				B0D3157C260274A000311CF5 /* ViewModelProtocol.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		B0D3159E2602B6E800311CF5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B0D3159F2602B71A00311CF5 /* StringExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +352,7 @@
 				B0D315642602716300311CF5 /* plrabn12.txt in Resources */,
 				B0D315662602716300311CF5 /* Nombres.txt in Resources */,
 				B09691D2260249B000E6609D /* LaunchScreen.storyboard in Resources */,
+				B0D315A52602B73100311CF5 /* Localizable.strings in Resources */,
 				B09691CF260249B000E6609D /* Assets.xcassets in Resources */,
 				B0D315652602716300311CF5 /* alice29.txt in Resources */,
 				B09691CD260249AE00E6609D /* Main.storyboard in Resources */,
@@ -366,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B09691CA260249AE00E6609D /* ViewController.swift in Sources */,
+				B0D315A02602B71A00311CF5 /* StringExtension.swift in Sources */,
 				B0D315772602744700311CF5 /* FileViewModel.swift in Sources */,
 				B0D3157D260274A000311CF5 /* ViewModelProtocol.swift in Sources */,
 				B09691C6260249AE00E6609D /* AppDelegate.swift in Sources */,

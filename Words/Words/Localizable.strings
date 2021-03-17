@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Words
+
+  Created by Carlos Cáceres González on 17/03/2021.
+  
+*/
+
+/*FILE LOADER*/
+"fileNameEmptyMsg" = "File name can not be empty";
+"fileNotLoadedMsg" = "Couldn't load file content. Please, check that the file name is correct";

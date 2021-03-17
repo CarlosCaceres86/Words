@@ -33,8 +33,8 @@ class FileViewModel: ViewModelProtocol {
     var input: Input
     var output: Output
     // MARK: Private
-    private var disposeBag: DisposeBag
-    private let fileLoader: FileLoader
+    private let disposeBag: DisposeBag = DisposeBag()
+    private let fileLoader: FileLoader = FileLoader()
 
 
     // MARK: Constructors
@@ -42,9 +42,6 @@ class FileViewModel: ViewModelProtocol {
         input  = Input(loadFile: loadFile.asObserver())
         output = Output(onLoadError: onLoadError.asObserver(),
                         onLoadDone: onLoadDone.asObserver())
-
-        disposeBag = DisposeBag()
-        fileLoader = FileLoader()
 
         configureObservers()
     }
@@ -60,25 +57,30 @@ class FileViewModel: ViewModelProtocol {
         disposeBag.insert(
             loadFile.bind { [weak self] fileName in
                 guard nil != self else { return }
-                guard nil != fileName && !fileName!.isEmpty else {
-                    self!.onLoadError.onNext("File name can not be empty")
-                    NSLog("File name can not be empty")
-                    return
-                }
-                guard let fileContent = self!.fileLoader.load(fileName: fileName!) else {
-                    self!.onLoadError.onNext("Couldn't load file content. Please, check that the file name is correct")
-                    NSLog("Couldn't load file content. Please, check that the file name is correct")
-                    return
-                }
-
-                NSLog(fileContent)
-                self!.onLoadDone.onNext(fileContent)
+                self!.performLoadFile(fileName: fileName)
             }
         )
     }
 
     private func configureOutputs() {
 
+    }
+
+    // MARK: Private
+    private func performLoadFile(fileName: String?) {
+        guard nil != fileName && !fileName!.isEmpty else {
+            onLoadError.onNext("fileNameEmptyMsg".localized)
+            NSLog("fileNameEmptyMsg".localized)
+            return
+        }
+        guard let fileContent = fileLoader.load(fileName: fileName!) else {
+            onLoadError.onNext("fileNotLoadedMsg".localized)
+            NSLog("fileNotLoadedMsg".localized)
+            return
+        }
+
+        NSLog(fileContent)
+        onLoadDone.onNext(fileContent)
     }
     
 } // FileViewModel

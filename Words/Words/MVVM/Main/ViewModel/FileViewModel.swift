@@ -19,7 +19,7 @@ class FileViewModel: ViewModelProtocol {
     struct Output {
         let onLoadError: Observable<String>
         let onLoadDone: Observable<Int>
-        let words: BehaviorRelay<[String : Int]>
+        let words: BehaviorRelay<[WordCounted]>
     }
 
     // MARK: Subjects
@@ -28,7 +28,7 @@ class FileViewModel: ViewModelProtocol {
     // MARK: Output
     private let onLoadError = PublishSubject<String>()
     private let onLoadDone = PublishSubject<Int>()
-    private let words: BehaviorRelay<[String : Int]> = BehaviorRelay(value: [:])
+    private let words: BehaviorRelay<[WordCounted]> = BehaviorRelay(value: [])
 
     // MARK: Properties
     // MARK: Internal

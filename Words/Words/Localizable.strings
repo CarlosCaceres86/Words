@@ -9,3 +9,6 @@
 /*FILE LOADER*/
 "fileNameEmptyMsg" = "File name can not be empty";
 "fileNotLoadedMsg" = "Couldn't load file content. Please, check that the file name is correct";
+
+/*MAIN VIEW*/
+"totalWordsLabel" = "Total words: %0.2d";

@@ -58,19 +58,24 @@ class FileViewModelTests: XCTestCase {
 
     func testLoadFileWithRightFileName() {
         let expectation = self.expectation(description: "FileLoading")
-        var result: String?
+        var result: Bool = false
 
         disposeBag.insert(
-            viewModel.output.onLoadDone.bind { fileContent in
+            viewModel.output.onLoadDone.bind { _ in
                 expectation.fulfill()
-                result = fileContent
+                result = true
+            },
+
+            viewModel.output.onLoadError.bind { _ in
+                expectation.fulfill()
+                result = false
             }
         )
 
         viewModel.input.loadFile.onNext("Nombres")
 
         waitForExpectations(timeout: 5, handler: nil)
-        XCTAssertTrue(result != nil)
+        XCTAssertTrue(result)
     }
 
 }

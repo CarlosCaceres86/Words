@@ -51,7 +51,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="hHR-h8-QTE">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                                         <subviews>
-                                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="6JP-EM-j6k">
+                                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="6JP-EM-j6k">
                                                 <rect key="frame" x="0.0" y="0.0" width="190" height="56"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </searchBar>

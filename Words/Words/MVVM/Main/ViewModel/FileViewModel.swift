@@ -106,11 +106,11 @@ class FileViewModel: ViewModelProtocol {
 
     private func performFilter(text: String?) {
         guard nil != text && !text!.isEmpty else {
-            self.words.accept(self.fileManager!.originalWordsCounted)
+            self.words.accept(self.fileManager!.wordsCounted)
             return
         }
 
-        self.words.accept(self.fileManager!.originalWordsCounted.filter{ $0.word.contains(text!) })
+        self.words.accept(self.fileManager!.wordsCounted.filter{ $0.word.contains(text!) })
     }
 
     private func performSort(type: SortType) {

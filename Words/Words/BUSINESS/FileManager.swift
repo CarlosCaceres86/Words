@@ -9,26 +9,36 @@ import Foundation
 
 typealias WordCounted = (word: String, count: Int)
 
+/// Available sorting types
+enum SortType {
+    case alphabetical
+    case repetitions
+}
+
+/// FileManager have a series of functionalities
+/// to work with the current loaded file.
 class FileManager {
 
     // MARK: Properties
     // MARK: Internal
-    var originalWordsCounted: [WordCounted] = []
     var wordsCounted: [WordCounted] = []
     var totalWords: Int
     // MARK: Private
-    private var originalWords: [String]
-    private var originalWordsDict: [String:Int] = [:]
+    private var words: [String]
+    private var wordsDict: [String:Int] = [:]
 
     // MARK: Init
     init(fileContent: String) {
-        self.originalWords =  fileContent.words
-        self.totalWords = self.originalWords.count
+        self.words =  fileContent.words
+        self.totalWords = self.words.count
         self.initWordRepetitions()
     }
 
     // MARK: Functions
     // MARK: Internal
+
+    /// To sort the word list depending
+    /// on the selected sort type
     func sortWords(by type: SortType) -> [WordCounted] {
         switch type {
             case .alphabetical: return sortAlphabeticaly()
@@ -38,13 +48,15 @@ class FileManager {
 
     // MARK: Private
     private func initWordRepetitions() {
-        self.originalWordsDict = [String : Int]()
-        self.originalWords.forEach { word in
-            self.originalWordsDict[word.sanitized] = (self.originalWordsDict[word.sanitized] ?? 0) + 1
+        // First get a dictionary with words and their repetitions.
+        // Each word is sanitized to avoid differences with symbols an upper-lower cases.
+        self.wordsDict = [String : Int]()
+        self.words.forEach { word in
+            self.wordsDict[word.sanitized] = (self.wordsDict[word.sanitized] ?? 0) + 1
         }
 
-        self.wordsCounted.append(contentsOf: self.originalWordsDict.map{ WordCounted(word: $0.key, count: $0.value) })
-        self.originalWordsCounted.append(contentsOf: self.wordsCounted)
+        // Convert the dictionary into a tupla to have a cleaner way to access the results
+        self.wordsCounted.append(contentsOf: self.wordsDict.map{ WordCounted(word: $0.key, count: $0.value) })
 
         #if DEBUG
 //            print("ORIGINAL WORDS ---------------")
@@ -55,16 +67,11 @@ class FileManager {
     }
 
     private func sortAlphabeticaly() -> [WordCounted] {
-        return self.originalWordsDict.sorted(by: { $0.0 < $1.0 }).map { WordCounted(word: $0.key, count: $0.value) }
+        return self.wordsDict.sorted(by: { $0.0 < $1.0 }).map { WordCounted(word: $0.key, count: $0.value) }
     }
 
     private func sortByRepetitions() -> [WordCounted] {
-        return self.originalWordsDict.sorted(by: { $0.1 < $1.1 }).map { WordCounted(word: $0.key, count: $0.value) }
+        return self.wordsDict.sorted(by: { $0.1 < $1.1 }).map { WordCounted(word: $0.key, count: $0.value) }
     }
 
 } // FileManager
-
-enum SortType {
-    case alphabetical
-    case repetitions
-}

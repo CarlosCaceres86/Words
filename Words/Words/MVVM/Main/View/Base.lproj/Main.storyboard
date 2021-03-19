@@ -45,8 +45,39 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eh9-lV-3ND">
+                                <rect key="frame" x="12" y="243" width="390" height="101"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="hHR-h8-QTE">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                                        <subviews>
+                                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="6JP-EM-j6k">
+                                                <rect key="frame" x="0.0" y="0.0" width="190" height="56"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </searchBar>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f74-Dn-3Wr">
+                                                <rect key="frame" x="194" y="0.0" width="93" height="56"/>
+                                                <state key="normal" title="Alphabeticaly"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehz-yE-jIW">
+                                                <rect key="frame" x="291" y="0.0" width="99" height="56"/>
+                                                <state key="normal" title="By Repetitions"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total words in file: ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaq-ph-Oig">
+                                        <rect key="frame" x="0.0" y="56" width="390" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="pQJ-r2-Feg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <tableView clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uuy-5g-QbS">
-                                <rect key="frame" x="12" y="300" width="390" height="562"/>
+                                <rect key="frame" x="12" y="352" width="390" height="510"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
@@ -89,25 +120,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total words in file: ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaq-ph-Oig">
-                                <rect key="frame" x="12" y="243" width="390" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="pQJ-r2-Feg"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="uuy-5g-QbS" firstAttribute="top" secondItem="oaq-ph-Oig" secondAttribute="bottom" constant="12" id="2Mo-wQ-10T"/>
                             <constraint firstItem="uuy-5g-QbS" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4Kl-dx-2k1"/>
-                            <constraint firstItem="oaq-ph-Oig" firstAttribute="top" secondItem="m2N-KJ-O21" secondAttribute="bottom" constant="8" symbolic="YES" id="AgI-NU-UIe"/>
-                            <constraint firstItem="oaq-ph-Oig" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="BW1-EF-Msg"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oaq-ph-Oig" secondAttribute="trailing" constant="12" id="E6c-dq-5BS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eh9-lV-3ND" secondAttribute="trailing" constant="12" id="7ff-6R-jvh"/>
+                            <constraint firstItem="uuy-5g-QbS" firstAttribute="top" secondItem="eh9-lV-3ND" secondAttribute="bottom" constant="8" id="Upb-m1-2nk"/>
+                            <constraint firstItem="eh9-lV-3ND" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="acT-t5-mZY"/>
                             <constraint firstItem="uuy-5g-QbS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="cTd-wF-Ph1"/>
+                            <constraint firstItem="eh9-lV-3ND" firstAttribute="top" secondItem="m2N-KJ-O21" secondAttribute="bottom" constant="8" symbolic="YES" id="fRi-MC-cRE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="m2N-KJ-O21" secondAttribute="trailing" constant="12" id="j40-nL-eLa"/>
                             <constraint firstItem="m2N-KJ-O21" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="k8c-Ol-Rtk"/>
                             <constraint firstItem="m2N-KJ-O21" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="pgc-VR-mSQ"/>
@@ -117,7 +139,11 @@
                     <connections>
                         <outlet property="errorLabel" destination="CVg-kD-1se" id="ipF-DT-Fkl"/>
                         <outlet property="fileNameTextfield" destination="vXM-uH-NbK" id="boX-K8-7le"/>
+                        <outlet property="filterStackView" destination="hHR-h8-QTE" id="87c-1p-9IY"/>
                         <outlet property="loadBtn" destination="k6J-0v-Ebs" id="c8B-f7-jrF"/>
+                        <outlet property="searchBar" destination="6JP-EM-j6k" id="ZmS-hi-zLO"/>
+                        <outlet property="sortAlphabeticalyBtn" destination="f74-Dn-3Wr" id="fIJ-aq-Hgy"/>
+                        <outlet property="sortByRepetitionsBtn" destination="ehz-yE-jIW" id="Tf1-ob-6E6"/>
                         <outlet property="tableView" destination="uuy-5g-QbS" id="oP3-1m-2Qj"/>
                         <outlet property="totalWordsLabel" destination="oaq-ph-Oig" id="B1B-FT-kSb"/>
                     </connections>

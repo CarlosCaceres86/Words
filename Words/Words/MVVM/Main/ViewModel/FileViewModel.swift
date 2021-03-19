@@ -14,6 +14,8 @@ class FileViewModel: ViewModelProtocol {
 
     struct Input {
         let loadFile: AnyObserver<String?>
+        let filter: AnyObserver<String?>
+        let sort: AnyObserver<SortType>
     }
 
     struct Output {
@@ -25,6 +27,8 @@ class FileViewModel: ViewModelProtocol {
     // MARK: Subjects
     // MARK: Input
     private let loadFile = PublishSubject<String?>()
+    private let filter = PublishSubject<String?>()
+    private let sort = PublishSubject<SortType>()
     // MARK: Output
     private let onLoadError = PublishSubject<String>()
     private let onLoadDone = PublishSubject<Int>()
@@ -42,7 +46,9 @@ class FileViewModel: ViewModelProtocol {
 
     // MARK: Constructors
     init() {
-        input  = Input(loadFile: loadFile.asObserver())
+        input  = Input(loadFile: loadFile.asObserver(),
+                       filter: filter.asObserver(),
+                       sort: sort.asObserver())
         output = Output(onLoadError: onLoadError.asObserver(),
                         onLoadDone: onLoadDone.asObserver(),
                         words: words)
@@ -62,6 +68,16 @@ class FileViewModel: ViewModelProtocol {
             loadFile.bind { [weak self] fileName in
                 guard nil != self else { return }
                 self!.performLoadFile(fileName: fileName)
+            },
+
+            filter.bind { [weak self] text in
+                guard nil != self else { return }
+                self!.performFilter(text: text)
+            },
+
+            sort.bind { [weak self] type in
+                guard nil != self else { return }
+                self!.performSort(type: type)
             }
         )
     }
@@ -85,7 +101,20 @@ class FileViewModel: ViewModelProtocol {
         // notify the number of words loaded
         onLoadDone.onNext(fileManager!.totalWords)
         // notify the words loaded
-        words.accept(fileManager!.words)
+        words.accept(fileManager!.wordsCounted)
+    }
+
+    private func performFilter(text: String?) {
+        guard nil != text && !text!.isEmpty else {
+            self.words.accept(self.fileManager!.originalWordsCounted)
+            return
+        }
+
+        self.words.accept(self.fileManager!.originalWordsCounted.filter{ $0.word.contains(text!) })
+    }
+
+    private func performSort(type: SortType) {
+        self.words.accept(self.fileManager!.sortWords(by: type))
     }
     
 } // FileViewModel

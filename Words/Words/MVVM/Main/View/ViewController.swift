@@ -9,7 +9,7 @@ import UIKit
 
 import RxSwift
 
-class ViewController: UIViewController {
+class ViewController: BaseViewController {
 
     // MARK: Properties
     // MARK: Private
@@ -20,19 +20,33 @@ class ViewController: UIViewController {
     @IBOutlet weak var fileNameTextfield: UITextField!
     @IBOutlet weak var loadBtn: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var totalWordsLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var sortAlphabeticalyBtn: UIButton!
+    @IBOutlet weak var sortByRepetitionsBtn: UIButton!
+    @IBOutlet weak var filterStackView: UIStackView!
 
+    // MARK: Overrides
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         self.setErrorTo(visible: false)
+        self.setFilterView(visible: false)
+
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.initComponents()
         self.configureObservers()
+    }
+
+    override func initComponents() {
+        super.initComponents()
+
+        self.searchBar.delegate = self
     }
 
     // MARK: Functions
@@ -46,9 +60,19 @@ class ViewController: UIViewController {
         self.disposeBag.insert(
             self.loadBtn.rx.tap.bind { [weak self] in
                 guard nil != self else { return }
-
-                self!.setErrorTo(visible: false)
                 self!.viewModel.input.loadFile.onNext(self!.fileNameTextfield.text)
+            },
+
+            self.sortAlphabeticalyBtn.rx.tap.bind { [weak self] in
+                guard nil != self else { return }
+                self!.clearSearchBar()
+                self!.viewModel.input.sort.onNext(.alphabetical)
+            },
+
+            self.sortByRepetitionsBtn.rx.tap.bind { [weak self] in
+                guard nil != self else { return }
+                self!.clearSearchBar()
+                self!.viewModel.input.sort.onNext(.repetitions)
             }
         )
     }
@@ -62,6 +86,8 @@ class ViewController: UIViewController {
 
             self.viewModel.output.onLoadDone.bind { [weak self] totalWords in
                 guard nil != self else { return }
+                self!.setErrorTo(visible: false)
+                self!.setFilterView(visible: true)
                 DispatchQueue.main.async {
                     self!.totalWordsLabel.text = String(format: "totalWordsLabel".localized, totalWords)
                 }
@@ -88,5 +114,28 @@ class ViewController: UIViewController {
         }
     }
 
+    private func setFilterView(visible: Bool) {
+        DispatchQueue.main.async {
+            self.filterStackView.isHidden = !visible
+        }
+    }
+
+    private func clearSearchBar() {
+        DispatchQueue.main.async {
+            self.searchBar.text = ""
+        }
+    }
+
 } // ViewController
 
+extension ViewController: UISearchBarDelegate {
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.viewModel.input.filter.onNext(searchText)
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.resignFirstResponder()
+    }
+
+} // UISearchBarDelegate

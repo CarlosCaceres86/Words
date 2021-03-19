@@ -26,6 +26,7 @@
 		B0D3159426027CD800311CF5 /* FileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D3159326027CD800311CF5 /* FileViewModelTests.swift */; };
 		B0D315A02602B71A00311CF5 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D3159F2602B71A00311CF5 /* StringExtension.swift */; };
 		B0D315A52602B73100311CF5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0D315A42602B73100311CF5 /* Localizable.strings */; };
+		B0D315B82603885B00311CF5 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D315B72603885B00311CF5 /* FileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		B0D3159326027CD800311CF5 /* FileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewModelTests.swift; sourceTree = "<group>"; };
 		B0D3159F2602B71A00311CF5 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		B0D315A42602B73100311CF5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		B0D315B72603885B00311CF5 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +131,7 @@
 				B0D3156A2602717E00311CF5 /* BUSINESS */,
 				B0D3154F26026E6C00311CF5 /* MVVM */,
 				B09691D3260249B000E6609D /* Info.plist */,
-				B0D315602602711300311CF5 /* DataFiles */,
+				B0D315602602711300311CF5 /* Data files */,
 			);
 			path = Words;
 			sourceTree = "<group>";
@@ -181,20 +183,21 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		B0D315602602711300311CF5 /* DataFiles */ = {
+		B0D315602602711300311CF5 /* Data files */ = {
 			isa = PBXGroup;
 			children = (
 				B0D315622602716300311CF5 /* alice29.txt */,
 				B0D315632602716300311CF5 /* Nombres.txt */,
 				B0D315612602716300311CF5 /* plrabn12.txt */,
 			);
-			path = DataFiles;
+			path = "Data files";
 			sourceTree = "<group>";
 		};
 		B0D3156A2602717E00311CF5 /* BUSINESS */ = {
 			isa = PBXGroup;
 			children = (
 				B0D3156B260271A100311CF5 /* FileLoader.swift */,
+				B0D315B72603885B00311CF5 /* FileManager.swift */,
 			);
 			path = BUSINESS;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				B09691CA260249AE00E6609D /* ViewController.swift in Sources */,
 				B0D315A02602B71A00311CF5 /* StringExtension.swift in Sources */,
 				B0D315772602744700311CF5 /* FileViewModel.swift in Sources */,
+				B0D315B82603885B00311CF5 /* FileManager.swift in Sources */,
 				B0D3157D260274A000311CF5 /* ViewModelProtocol.swift in Sources */,
 				B09691C6260249AE00E6609D /* AppDelegate.swift in Sources */,
 				B0D3156C260271A100311CF5 /* FileLoader.swift in Sources */,

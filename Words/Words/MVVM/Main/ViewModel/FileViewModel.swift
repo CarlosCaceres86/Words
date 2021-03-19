@@ -18,7 +18,8 @@ class FileViewModel: ViewModelProtocol {
 
     struct Output {
         let onLoadError: Observable<String>
-        let onLoadDone: Observable<String>
+        let onLoadDone: Observable<Int>
+        let words: BehaviorRelay<[String : Int]>
     }
 
     // MARK: Subjects
@@ -26,7 +27,8 @@ class FileViewModel: ViewModelProtocol {
     private let loadFile = PublishSubject<String?>()
     // MARK: Output
     private let onLoadError = PublishSubject<String>()
-    private let onLoadDone = PublishSubject<String>()
+    private let onLoadDone = PublishSubject<Int>()
+    private let words: BehaviorRelay<[String : Int]> = BehaviorRelay(value: [:])
 
     // MARK: Properties
     // MARK: Internal
@@ -35,13 +37,15 @@ class FileViewModel: ViewModelProtocol {
     // MARK: Private
     private let disposeBag: DisposeBag = DisposeBag()
     private let fileLoader: FileLoader = FileLoader()
+    private var fileManager: FileManager?
 
 
     // MARK: Constructors
     init() {
         input  = Input(loadFile: loadFile.asObserver())
         output = Output(onLoadError: onLoadError.asObserver(),
-                        onLoadDone: onLoadDone.asObserver())
+                        onLoadDone: onLoadDone.asObserver(),
+                        words: words)
 
         configureObservers()
     }
@@ -62,9 +66,7 @@ class FileViewModel: ViewModelProtocol {
         )
     }
 
-    private func configureOutputs() {
-
-    }
+    private func configureOutputs() { }
 
     // MARK: Private
     private func performLoadFile(fileName: String?) {
@@ -79,8 +81,11 @@ class FileViewModel: ViewModelProtocol {
             return
         }
 
-        NSLog(fileContent)
-        onLoadDone.onNext(fileContent)
+        fileManager = FileManager(fileContent: fileContent)
+        // notify the number of words loaded
+        onLoadDone.onNext(fileManager!.totalWords)
+        // notify the words loaded
+        words.accept(fileManager!.words)
     }
     
 } // FileViewModel

@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     // MARK: Outlets
     @IBOutlet weak var fileNameTextfield: UITextField!
     @IBOutlet weak var loadBtn: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,12 +39,22 @@ class ViewController: UIViewController {
         disposeBag.insert(
             loadBtn.rx.tap.bind { [weak self] in
                 guard nil != self else { return }
+                DispatchQueue.main.async { self!.errorLabel.isHidden = true }
                 self!.viewModel.input.loadFile.onNext(self!.fileNameTextfield.text)
             }
         )
     }
 
-    private func configureOutputs() { }
+    private func configureOutputs() {
+        disposeBag.insert(
+            viewModel.output.onLoadError.bind { [weak self] errorMsg in
+                DispatchQueue.main.async {
+                    self!.errorLabel.isHidden = false
+                    self!.errorLabel.text = errorMsg
+                }
+            }
+        )
+    }
 
 } // ViewController
 

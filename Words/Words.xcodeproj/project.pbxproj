@@ -28,6 +28,7 @@
 		B0D315A52602B73100311CF5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0D315A42602B73100311CF5 /* Localizable.strings */; };
 		B0D315B82603885B00311CF5 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D315B72603885B00311CF5 /* FileManager.swift */; };
 		B0D315C02604EDAC00311CF5 /* WordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D315BF2604EDAC00311CF5 /* WordTableViewCell.swift */; };
+		B0D315CE2605151400311CF5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D315CD2605151400311CF5 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		B0D315A42602B73100311CF5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		B0D315B72603885B00311CF5 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		B0D315BF2604EDAC00311CF5 /* WordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTableViewCell.swift; sourceTree = "<group>"; };
+		B0D315CD2605151400311CF5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				B0D3157C260274A000311CF5 /* ViewModelProtocol.swift */,
+				B0D315CD2605151400311CF5 /* BaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				B0D315772602744700311CF5 /* FileViewModel.swift in Sources */,
 				B0D315B82603885B00311CF5 /* FileManager.swift in Sources */,
 				B0D315C02604EDAC00311CF5 /* WordTableViewCell.swift in Sources */,
+				B0D315CE2605151400311CF5 /* BaseViewController.swift in Sources */,
 				B0D3157D260274A000311CF5 /* ViewModelProtocol.swift in Sources */,
 				B09691C6260249AE00E6609D /* AppDelegate.swift in Sources */,
 				B0D3156C260271A100311CF5 /* FileLoader.swift in Sources */,

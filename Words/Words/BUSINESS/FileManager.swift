@@ -41,7 +41,7 @@ class FileManager {
     /// on the selected sort type
     func sortWords(by type: SortType) -> [WordCounted] {
         switch type {
-            case .alphabetical: return sortAlphabeticaly()
+            case .alphabetical: return sortAlphabetically()
             case .repetitions: return sortByRepetitions()
         }
     }
@@ -66,7 +66,7 @@ class FileManager {
         #endif
     }
 
-    private func sortAlphabeticaly() -> [WordCounted] {
+    private func sortAlphabetically() -> [WordCounted] {
         return self.wordsDict.sorted(by: { $0.0 < $1.0 }).map { WordCounted(word: $0.key, count: $0.value) }
     }
 
